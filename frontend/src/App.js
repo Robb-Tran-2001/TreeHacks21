@@ -1,5 +1,5 @@
 import React from 'react';
-import 'FirstScreen' from './components/FirstScreen.js';
+import FirstScreen from './components/FirstScreen';
 
 function App() {
   return (

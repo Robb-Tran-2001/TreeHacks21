@@ -1,12 +1,12 @@
 import React from 'react';
 
-class FirstScreen extends React {
-    constructor(props) {
+class FirstScreen extends React.Component {
+  constructor(props) {
         super(props);
         this.state = {
             flag: 0
         }
-    }
+    };
 
     handleOnClick(event) {
         event.preventDefault();
@@ -15,8 +15,8 @@ class FirstScreen extends React {
     }
 
     render() {
-        if(flag === 1) return <Register/>
-        if(flag === 2) return <Login/>
+        if(this.flag === 1) return <Register/>
+        if(this.flag === 2) return <Login/>
         return (
             <div> 
                 <h1> Welcome to AI WOJ </h1>
@@ -24,7 +24,7 @@ class FirstScreen extends React {
                 <br/>
                 <button name='registerButton' value={this.flag} onClick={this.handleOnClick}/>
                 <button name='loginButton' value={this.flag} onClick={this.handleOnClick}/>
-            </div>>
+            </div>
         )
     }
 }

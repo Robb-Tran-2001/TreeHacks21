@@ -16,7 +16,7 @@ class Blockchain:
   def full_chain(self):
       return self.__chain
   
-  def create_genesis():
+  def create_genesis(self):
     genesis_block = Block(0, 0, '00', "")
     self.__chain.append(genesis_block)
 

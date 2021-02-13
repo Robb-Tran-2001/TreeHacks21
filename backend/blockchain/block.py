@@ -25,7 +25,7 @@ class Block:
     return self.timestamp
 
   def hash_block(self, text):
-    return hashlib.sha256(text)
+    return hashlib.sha512(text)
   
   def get_checksums(self, img_url):
     #request.urlretrieve(img_url, "sample.jpg")

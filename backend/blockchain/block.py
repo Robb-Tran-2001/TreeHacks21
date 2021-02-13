@@ -39,7 +39,7 @@ class Block:
     #request.urlretrieve(img_path, "sample.jpg")
 
     if img_path == "":
-      return None, None
+      raise Exception("Empty image filepath not allowed")
 
     img = Image.open("sample.jpg")
     img_byte_arr = io.BytesIO()

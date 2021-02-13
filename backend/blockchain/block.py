@@ -1,5 +1,11 @@
 import hashlib
 from time import time
+import imagehash
+from PIL import Image
+from urllib import request
+import numpy as np
+import io
+import json
 
 class Block:
   def __init__(self, index, nonce, previous_hash, img_url):

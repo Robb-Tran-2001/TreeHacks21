@@ -8,10 +8,18 @@ import io
 import json
 
 class Block:
-  def __init__(self, index, nonce, previous_hash, img_path):
+  def __init__(self, index, nonce, previous_hash, img_path, genesis=False):
+
     self.timestamp = time()
     self.index = index
     self.nonce = nonce
+
+    if genesis:
+      self.hash = ['0' * 512][0]
+      self.data = {
+        None: None
+      }
+      return
 
     cs_div, cs_con = self.get_checksums(img_path)
 
@@ -29,6 +37,10 @@ class Block:
   
   def get_checksums(self, img_path):
     #request.urlretrieve(img_path, "sample.jpg")
+
+    if img_path == "":
+      return None, None
+
     img = Image.open("sample.jpg")
     img_byte_arr = io.BytesIO()
     img.save(img_byte_arr, format='PNG')

@@ -17,7 +17,7 @@ class Blockchain:
         return self.__chain
   
     def create_genesis(self):
-        genesis_block = Block(0, 0, '00', "")
+        genesis_block = Block(0, 0, '00', "", genesis=True)
         self.__chain.append(genesis_block)
 
     @staticmethod

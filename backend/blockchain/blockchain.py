@@ -3,7 +3,7 @@ from block import Block
 
 class Blockchain:
   def __init__(self):
-    self.__current_transactions = []
+    self.__current_media = []
     self.__chain = []
 
     self.create_genesis()
@@ -13,14 +13,6 @@ class Blockchain:
       return self.__chain[-1]
 
   @property
-  def last_transaction(self):
-      return self.__current_transactions[-1]
-
-  @property
-  def pending_transactions(self):
-      return self.__current_transactions
-
-  @property
   def full_chain(self):
       return self.__chain
   
@@ -28,7 +20,6 @@ class Blockchain:
     genesis_block = Block(0, 0, '00', "")
     self.__chain.append(genesis_block)
 
-  
   @staticmethod
   def validate_proof_of_work(last_nonce, last_hash, nonce):
       """
@@ -60,7 +51,7 @@ class Blockchain:
 
   def add_block(self, block):
     self._chain.append(block)
-    self.__current_transactions = []
+    self.__current_media = []
 
   def register_img(self, img_path):
     last_block = self.last_block

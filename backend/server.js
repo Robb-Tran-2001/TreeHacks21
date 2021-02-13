@@ -13,7 +13,7 @@ app.use(express.static('public'))
 app.use(cors())
 app.use(express.json())
 
-const uri = process.env.ATLAS_URI;
+const uri = "mongodb+srv://aman:7dT8bZGnaAPmL6rS@cluster0.mjlo9.mongodb.net/treehacks?retryWrites=true&w=majority";
 mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once('open', () => {

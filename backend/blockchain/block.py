@@ -13,6 +13,7 @@ class Block:
     self.timestamp = time()
     self.index = index
     self.nonce = nonce
+    self.previous_hash = previous_hash
 
     if genesis:
       self.hash = ['0' * 512][0]
@@ -26,7 +27,7 @@ class Block:
     self.hash = self.hash_block((str(self.timestamp) + cs_div + str(cs_con)).encode('utf-8'))
 
     self.data = {
-      cs_con: cs_div
+      str(cs_con): cs_div
     }
 
   def get_timestamp(self):

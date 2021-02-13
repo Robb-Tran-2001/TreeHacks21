@@ -147,7 +147,7 @@ class Blockchain:
 
     def traverse(self):
         for i in self.__chain:
-            print([self.__chain[i].timestamp, self.__chain[i].hash, self.__chain[i].data, self.__chain[i].previous_hash])
+            print([i.timestamp, i.hash, i.data, i.previous_hash])
 
 # a = Blockchain()
 # a.mine('C:/Users/amanp/dev/treehacks_2021/TreeHacks21/backend/blockchain/sample.jpg')

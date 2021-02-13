@@ -15,7 +15,7 @@ class Block:
 
     cs_div, cs_con = self.get_checksums(img_url)
 
-    self.hash = self.hash_block(str(self.timestamp) + cs_div + cs_con)
+    self.hash = self.hash_block((str(self.timestamp) + cs_div + str(cs_con)).encode('utf-8'))
 
     self.data = {
       cs_con: cs_div
@@ -28,7 +28,7 @@ class Block:
     return hashlib.sha256(text)
   
   def get_checksums(self, img_url):
-    request.urlretrieve(img_url, "sample.jpg")
+    #request.urlretrieve(img_url, "sample.jpg")
     img = Image.open("sample.jpg")
     img_byte_arr = io.BytesIO()
     img.save(img_byte_arr, format='PNG')

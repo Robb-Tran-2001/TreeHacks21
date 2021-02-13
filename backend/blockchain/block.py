@@ -8,12 +8,12 @@ import io
 import json
 
 class Block:
-  def __init__(self, index, nonce, previous_hash, img_url):
+  def __init__(self, index, nonce, previous_hash, img_path):
     self.timestamp = time()
     self.index = index
     self.nonce = nonce
 
-    cs_div, cs_con = self.get_checksums(img_url)
+    cs_div, cs_con = self.get_checksums(img_path)
 
     self.hash = self.hash_block((str(self.timestamp) + cs_div + str(cs_con)).encode('utf-8'))
 
@@ -27,8 +27,8 @@ class Block:
   def hash_block(self, text):
     return hashlib.sha512(text)
   
-  def get_checksums(self, img_url):
-    #request.urlretrieve(img_url, "sample.jpg")
+  def get_checksums(self, img_path):
+    #request.urlretrieve(img_path, "sample.jpg")
     img = Image.open("sample.jpg")
     img_byte_arr = io.BytesIO()
     img.save(img_byte_arr, format='PNG')

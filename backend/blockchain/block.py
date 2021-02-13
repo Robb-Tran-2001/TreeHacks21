@@ -2,18 +2,32 @@ import hashlib
 from time import time
 
 class Block:
-  def __init__(self, index, nonce, previous_hash, img_path):
+  def __init__(self, index, nonce, previous_hash, img_url):
     self.timestamp = time()
     self.index = index
     self.nonce = nonce
-    self.hash = self.hash_block(img_path)
-  
-  def hash_block(self, img_path):
-    if img_path == "":
-      return "1"
 
-    with open(img_path,"rb") as f:
-      bytes = f.read() # read entire file as bytes
-      readable_hash = hashlib.sha256(bytes).hexdigest();
-      print(readable_hash) 
-      return readable_hash
+    cs_div, cs_con = self.get_checksums(img_url)
+
+    self.hash = self.hash_block(str(self.timestamp) + cs_div + cs_con)
+
+    self.data = {
+      cs_con: cs_div
+    }
+
+  def get_timestamp(self):
+    return self.timestamp
+
+  def hash_block(self, text):
+    return hashlib.sha256(text)
+  
+  def get_checksums(self, img_url):
+    request.urlretrieve(img_url, "sample.jpg")
+    img = Image.open("sample.jpg")
+    img_byte_arr = io.BytesIO()
+    img.save(img_byte_arr, format='PNG')
+    img_byte_arr = img_byte_arr.getvalue()
+    cs_div = hashlib.sha512(img_byte_arr).hexdigest()
+    cs_con = imagehash.phash(Image.open('sample.jpg'))
+
+    return cs_div, cs_con

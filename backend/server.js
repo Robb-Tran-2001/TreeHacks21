@@ -14,11 +14,16 @@ app.use(cors())
 app.use(express.json())
 
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+    .then(() => console.log("It works now"))
+    .catch((err) => console.log("no it does not work", err));
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection success")
 })
+
+const userRouter = require('./routes/users')
+app.use('/user', userRouter)
 
 server.listen(port, () => {
   console.log('Server running on port ', port)

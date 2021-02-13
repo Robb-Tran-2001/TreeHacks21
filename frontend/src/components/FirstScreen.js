@@ -1,4 +1,6 @@
 import React from 'react';
+import Register from './Register';
+import Login from './Login';
 
 class FirstScreen extends React.Component {
   constructor(props) {
@@ -6,6 +8,7 @@ class FirstScreen extends React.Component {
         this.state = {
             flag: 0
         }
+        this.handleOnClick = this.handleOnClick.bind(this)
     };
 
     handleOnClick(event) {
@@ -15,15 +18,15 @@ class FirstScreen extends React.Component {
     }
 
     render() {
-        if(this.flag === 1) return <Register/>
-        if(this.flag === 2) return <Login/>
+        if(this.state.flag === 1) return <Register/>;
+        if(this.state.flag === 2) return <Login/>;
         return (
             <div> 
                 <h1> Welcome to AI WOJ </h1>
                 <p> Login to begin using. If you don't have an account, sign up. Get your NBA stories here! </p>
                 <br/>
-                <button name='registerButton' value={this.flag} onClick={this.handleOnClick}/>
-                <button name='loginButton' value={this.flag} onClick={this.handleOnClick}/>
+                <button className='button' name='registerButton' value={this.state.flag} onClick={this.handleOnClick}/>
+                <button className='button' name='loginButton' value={this.state.flag} onClick={this.handleOnClick}/>
             </div>
         )
     }

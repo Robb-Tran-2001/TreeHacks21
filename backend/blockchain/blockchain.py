@@ -50,7 +50,7 @@ class Blockchain:
       return nonce
 
   def add_block(self, block):
-    self._chain.append(block)
+    self.__chain.append(block)
     self.__current_media = []
 
   def register_img(self, img_path):

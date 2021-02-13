@@ -49,9 +49,11 @@ class Blockchain:
 
       return nonce
 
-  def add_block(self, block):
+  def __add_block(self, block):
     self.__chain.append(block)
     self.__current_media = []
+
+    return True
 
   def register_img(self, img_path):
     last_block = self.last_block
@@ -64,6 +66,27 @@ class Blockchain:
     block = Block(index, nonce, previous_hash, img_path)
 
     self.add_block(block)
+
+  def mine(self, img_url):
+    """
+    Mines a new block into the chain
+    :param reward_address: <str> address where the reward coin will be transferred to
+    :return: result of the mining attempt and the new block
+    """
+    last_block = self.last_block
+    index = last_block.index + 1
+    previous_hash = last_block.hash
+
+    # Let's start with the heavy duty, generating the proof of work
+    nonce = self.generate_proof_of_work(last_block)
+
+    # Add the block to the new chain
+    block = Block(index, nonce, previous_hash, img_url)
+
+    if self.__add_block(block):
+        return block
+
+    return None
   
 
 

@@ -17,7 +17,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ('id', 'name')
+        fields = "__all__"
 
 class CreateImageSerializer(serializers.ModelSerializer):
     class Meta:

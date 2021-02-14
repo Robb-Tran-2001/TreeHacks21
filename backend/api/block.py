@@ -37,7 +37,16 @@ class Block:
 
   def hash_block(self, text):
     return hashlib.sha512(text)
-  
+
+  def get_hash_con(self):
+    return self.cs_con
+
+  def get_hash_div(self):
+    return self.cs_div
+
+  def get_hash(self):
+    return self.hash
+    
   def get_checksums(self, img_path):
     #request.urlretrieve(img_path, "sample.jpg")
 

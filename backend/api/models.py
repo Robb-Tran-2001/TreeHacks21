@@ -10,4 +10,5 @@ class Image(models.Model):
     image = models.ImageField(null=True, blank=True)
     hash_con = models.CharField(blank=True,max_length=512, default="")
     hash_div = models.CharField(blank=True,max_length=512, default="")
-    timestamp = models.DateTimeField(auto_now_add=True)
+    hash = models.CharField(blank=True,max_length=512, default="")
+    timestamp = models.FloatField(null=True, blank=True)

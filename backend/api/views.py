@@ -4,6 +4,10 @@ from .models import User, Image
 from .serializers import UserSerializer, CreateUserSerializer, ImageSerializer, CreateImageSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from .block import Block
+from .blockchain import Blockchain
+
+bc = Blockchain()
 
 #Each view is associated with a model and a serializer
 class UserView(generics.ListAPIView):
@@ -52,9 +56,18 @@ class CreateImageView(APIView):
         filename = request.data['image']
         serializer=self.serializer_class(data=request.data)
         if serializer.is_valid():
-            image_path = './media/images/'+str(filename)
+            image_path = './media/'+str(filename)
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            #get block from mining
+            b = bc.mine(image_path)
+            if b is not None:
+                hash_div = b.get_hash_div()
+                hash_con = b.get_hash_con()
+                hash = b.get_hash().hexdigest()
+                print(b.get_timestamp())
+                image = Image(name=image_path, image=filename,hash_con=hash_con, hash_div=hash_div, hash=hash, timestamp=b.get_timestamp())
+                image.save()
+                return Response(CreateImageSerializer(image).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         

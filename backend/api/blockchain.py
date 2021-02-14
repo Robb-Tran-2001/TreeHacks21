@@ -1,5 +1,5 @@
 import hashlib
-from block import Block
+from .block import Block
 import imagehash
 from PIL import Image
 from urllib import request

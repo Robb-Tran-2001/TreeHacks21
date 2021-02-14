@@ -108,47 +108,47 @@ export class Homepage extends React.Component {
             </button>
           </div>
         </div>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          {this.state.matches.length !== 0 && 
-          <Table bordered>
-            <thead>
-              <tr>
-                <th>#</th>
-                  <th>Hash</th>
-                  <th>Timestamp</th>
-                  <th>Exact Match</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.matches.map((match, index) => (
-              <tr>
-                  <th scope="Row">{index + 1}</th>
-                  <td>{match.hash}</td>
-                  <td>{match.timestamp}</td>
-                  <td>{String(match.div_check)}</td>
-              </tr>
-              ))}
-            </tbody>
-          </Table>
-          }
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        {this.state.matches.length !== 0 && 
+        <Table bordered>
+          <thead>
+            <tr>
+              <th>#</th>
+                <th>Hash</th>
+                <th>Timestamp</th>
+                <th>Exact Match</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.matches.map((match, index) => (
+            <tr>
+                <th scope="Row">{index + 1}</th>
+                <td>{match.hash}</td>
+                <td>{match.timestamp}</td>
+                <td>{String(match.div_check)}</td>
+            </tr>
+            ))}
+          </tbody>
+        </Table>
+        }
       </div>
         
         )

@@ -1,9 +1,13 @@
 from django.db import models
 
-# Create your models here.
+# Models for JSON creation
 class User(models.Model):
-    id = models.IntegerField(null=False, default=0, unique=True, primary_key=True)
-    username=models.CharField(max_length=30, default="", unique=True)
-    password=models.CharField(max_length=30, default="", unique=True)
+    username=models.CharField(max_length=20, null=False, unique=True)
+    password=models.CharField(max_length=20, null=False)
 
-
+class Image(models.Model):
+    name = models.CharField(blank=True, max_length=255, default='')
+    image = models.ImageField(null=True, blank=True)
+    hash_con = models.CharField(blank=True,max_length=512, default="")
+    hash_div = models.CharField(blank=True,max_length=512, default="")
+    timestamp = models.DateTimeField(auto_now_add=True)

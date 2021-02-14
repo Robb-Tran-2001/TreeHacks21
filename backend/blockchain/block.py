@@ -17,18 +17,20 @@ class Block:
 
     if genesis:
       self.hash = ['0' * 512][0]
-      self.data = {
-        None: None
-      }
+      self.cs_div = None
+      self.cs_con = None
       return
 
     cs_div, cs_con = self.get_checksums(img_path)
 
-    self.hash = self.hash_block((str(self.timestamp) + cs_div + str(cs_con)).encode('utf-8'))
+    self.cs_div = cs_div
+    self.cs_con = str(cs_con)
 
-    self.data = {
-      str(cs_con): cs_div
-    }
+    self.hash = self.hash_block((str(self.timestamp) + self.cs_div + str(self.cs_con)).encode('utf-8'))
+
+    # self.data = {
+    #   str(cs_con): cs_div
+    # }
 
   def get_timestamp(self):
     return self.timestamp
@@ -42,11 +44,11 @@ class Block:
     if img_path == "":
       raise Exception("Empty image filepath not allowed")
 
-    img = Image.open("sample.jpg")
+    img = Image.open(img_path)
     img_byte_arr = io.BytesIO()
     img.save(img_byte_arr, format='PNG')
     img_byte_arr = img_byte_arr.getvalue()
     cs_div = hashlib.sha512(img_byte_arr).hexdigest()
-    cs_con = imagehash.phash(Image.open('sample.jpg'))
+    cs_con = imagehash.phash(Image.open(img_path))
 
     return cs_div, cs_con

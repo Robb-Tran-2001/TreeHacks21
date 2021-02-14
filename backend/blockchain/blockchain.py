@@ -1,5 +1,11 @@
 import hashlib
 from block import Block
+import imagehash
+from PIL import Image
+from urllib import request
+import numpy as np
+import io
+import json
 
 
 class Blockchain:
@@ -146,8 +152,37 @@ class Blockchain:
         return None
 
     def traverse(self):
-        for i in self.__chain:
-            print([i.timestamp, i.hash, i.data, i.previous_hash])
+        for index in range(len(self.__chain)):
+            i = self.__chain[index]
+            print([i.timestamp, i.hash, i.cs_con, i.cs_div, i.previous_hash])
+
+    def search_helper(self, con_check, div_check):
+        matches = []
+        for block in self.__chain[1:]:
+            print("block.cs_con:", block.cs_con, "con_check:", con_check)
+            if block.cs_con == con_check:
+                div = True if block.cs_div == div_check else False
+                result = {
+                    "hash": block.hash.hexdigest(),
+                    "timestamp": block.timestamp,
+                    "div_check": div
+                }
+                matches.append(result)
+
+        return matches
+
+    def search(self, img_path):
+        img = Image.open(img_path)
+        img_byte_arr = io.BytesIO()
+        img.save(img_byte_arr, format='PNG')
+        img_byte_arr = img_byte_arr.getvalue()
+        cs_div = hashlib.sha512(img_byte_arr).hexdigest()
+        cs_con = imagehash.phash(Image.open(img_path))
+
+        return self.search_helper(str(cs_con), cs_div)
+
+
+
 
 # a = Blockchain()
 # a.mine('C:/Users/amanp/dev/treehacks_2021/TreeHacks21/backend/blockchain/sample.jpg')

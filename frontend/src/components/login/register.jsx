@@ -8,7 +8,7 @@ export class Register extends React.Component {
     super(props);
     this.state = {
       username: '',
-      email: '',
+      // email: '',
       password: '',
       submit: 0
     }
@@ -22,11 +22,11 @@ export class Register extends React.Component {
 
     var payload={
         "username":this.state.username,
-        "email":this.state.email,
+        // "email":this.state.email,
         "password":this.state.password
     }
 
-    axios.post('http://localhost:5000/user/login', payload)
+    axios.post('http://localhost:8000/user/signup', payload)
         .then( (response)=> {
             console.log(response);
             if(response.status === 200){
@@ -62,12 +62,12 @@ export class Register extends React.Component {
           <div className="form">
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" value={this.state.email} onChange={this.handleOnChange}/>
+              <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleOnChange}/>
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <label htmlFor="email">Email</label>
               <input type="text" name="email" placeholder="email" value={this.state.email} onChange={this.handleOnChange}/>
-            </div>
+            </div> */}
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleOnChange}/>

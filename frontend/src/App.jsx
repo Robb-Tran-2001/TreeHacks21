@@ -1,12 +1,22 @@
+// import React from "react";
+// import "./App.scss";
+// import { Login, Register } from "./components/login/index";
+// import { Homepage, Search } from "./components/upload/index"
+
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <div className="App">
+//         <Search />
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;
+
+
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams
-} from "react-router-dom";
 import "./App.scss";
 import { Login, Register } from "./components/login/index";
 import { Homepage } from "./components/upload/index"
@@ -43,9 +53,6 @@ class App extends React.Component {
     const currentActive = isLogginActive ? "login" : "register";
     return (
       <div className="App">
-        {/* <div>
-          <Homepage />
-        </div> */}
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (

@@ -29,7 +29,7 @@ export class Register extends React.Component {
     axios.post('http://localhost:8000/user/signup', payload)
         .then( (response)=> {
             console.log(response);
-            if(response.status === 200){
+            if(response.status === 201){
                 this.setState({submit: 1});
             }
             else if(response.status === 401) {

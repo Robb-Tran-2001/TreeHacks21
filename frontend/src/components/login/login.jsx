@@ -27,10 +27,10 @@ export class Login extends React.Component {
     axios.post('http://localhost:8000/user/login', payload)
         .then( (response)=> {
             console.log(response);
-            if(response.status === 200){
+            if(response.status === 202){
                 this.setState({submit: 1});
             }
-            else if(response.status === 401) {
+            else if(response.status === 409) {
                 console.log("Bad credentials")
             }
         })

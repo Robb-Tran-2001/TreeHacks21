@@ -1,10 +1,9 @@
 import axios from "axios";
 import React from "react";
 import logoImg from "../../cover.png";
-import cloudImg from "../../cloud.png";
 
 
-export class Homepage extends React.Component {
+export class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -60,15 +59,11 @@ export class Homepage extends React.Component {
             </div>
             <div className="header">Where the truth matters.</div>
 
-            <div className="image">
-              <img src={cloudImg} />
-            </div>
-
           </div>
           <div className="footer">
             <input type="file" onChange={this.onFileChange} />
             <button className="btn" onClick={this.onFileUpload}>
-                Upload
+                Search
             </button>
           </div>
         </div>

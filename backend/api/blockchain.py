@@ -183,7 +183,7 @@ class Blockchain:
         img = Image.open(img_path)
         img_byte_arr = io.BytesIO()
         img.save(img_byte_arr, format='PNG')
-        img_byte_arr = img_byte_arr.getvalue()
+        img_byte_arr = img_byte_arr.getvalue() 
         cs_div = hashlib.sha512(img_byte_arr).hexdigest()
         cs_con = imagehash.phash(Image.open(img_path))
 

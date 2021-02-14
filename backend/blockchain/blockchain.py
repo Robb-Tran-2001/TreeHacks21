@@ -157,10 +157,18 @@ class Blockchain:
             print([i.timestamp, i.hash, i.cs_con, i.cs_div, i.previous_hash])
 
     def search_helper(self, con_check, div_check):
+        threshold = 3
         matches = []
         for block in self.__chain[1:]:
             print("block.cs_con:", block.cs_con, "con_check:", con_check)
-            if block.cs_con == con_check:
+
+            counter = 0
+            for i in range(len(con_check)):
+                if block.cs_con[i] != con_check[i]:
+                    counter += 1
+
+
+            if counter <= threshold:
                 div = True if block.cs_div == div_check else False
                 result = {
                     "hash": block.hash.hexdigest(),

@@ -26,14 +26,14 @@ export class Search extends React.Component {
         const formData = new FormData();
 
         formData.append(
-            "myFile",
+            "image",
             this.state.selectedFile,
             this.state.selectedFile.name
         );
 
         console.log(this.state.selectedFile);
 
-        axios.post('http://localhost:8000/user/upload', formData)
+        axios.post('http://localhost:8000/api/images', formData)
     };
 
     // display file data after upload

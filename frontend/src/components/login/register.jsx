@@ -26,7 +26,7 @@ export class Register extends React.Component {
         "password":this.state.password
     }
 
-    axios.post('http://localhost:8000/user/signup', payload)
+    axios.post('http://localhost:8000/api/signup', payload)
         .then( (response)=> {
             console.log(response);
             if(response.status === 201){

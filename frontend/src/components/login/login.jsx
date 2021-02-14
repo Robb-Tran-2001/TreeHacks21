@@ -24,7 +24,7 @@ export class Login extends React.Component {
         "password":this.state.password
     }
 
-    axios.post('http://localhost:8000/user/login', payload)
+    axios.post('http://localhost:8000/api/login', payload)
         .then( (response)=> {
             console.log(response);
             if(response.status === 202){

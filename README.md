@@ -11,3 +11,8 @@ Install in backend:
 - python .\manage.py makemigrations to check for changes
 - python .\manage.py migrate update changes
 - python .\manage.py runserver
+
+See our Devpost submission here: https://devpost.com/software/trustchain-ah2kqz'
+
+Contributors: Aman Patel, Sam Sommerer, Tony Sun, Robb Tran
+(All equal contribution)
